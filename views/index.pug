@@ -21,9 +21,9 @@ block content
         .container-fluid
         #mycard.row.justify-content-center.align-items-start.row-cols-1.row-cols-md-2.g-4.m-2.p-2.d-flex
             each package in Packages
-              .card.m-4.d-flex.align-self-stretch(style='width: 25rem;')
-                .d-flex.flex-fill.shadow
-                  img.card-img-top.rounded(src=`${package.PkgImgSrc}` alt=`${package.PkgName}` style='max-height: 20rem; object-fit: fill;')
+              .card.m-4.d-flex.align-self-stretch.justify-contents-center.shadow(style='width: 25rem;')
+                .d-flex.flex-fill.shadow.mt-1(style='height: 25rem;')
+                  img.card-img-top.rounded(src=`${package.PkgImgSrc}` alt=`${package.PkgName}` style= 'object-fit: cover;')
                 .card-body.text-center.d-flex.flex-column.mt-auto
                   h5.card-title.fs-2.text-center.justify-self-end #{package.PkgName}
                   p.card-text.text-center.justify-self-end #{package.PkgDesc}
