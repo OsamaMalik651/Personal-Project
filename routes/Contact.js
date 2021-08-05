@@ -8,7 +8,7 @@ var Contact = require("../models/contact").contactForm;
 router.get("/", async function (req, res, next) {
   var Role = "";
   const agency = await Agency.find().exec();
-  const agents = await Agents.find({ role: "agent" }).exec();
+  const agents = await Agents.find().exec();
   if (res.locals.currentUser) {
     Role = res.locals.currentUser.role;
   }

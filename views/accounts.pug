@@ -4,7 +4,7 @@ block content
     if !currentUser
         .container-fluid.shadow-lg.p-3.mb-3.rounded.col-xl-8
             h1.text-center #{title}
-            if !Login
+            if !hideLogin
                 .container-fluid.shadow.p-3.mb-3.rounded.col-xl-8.col-md-4
                     h1.text-center Register
                     form(action="/account/register", method="post").d-flex.flex-column.align-items-center
@@ -13,7 +13,7 @@ block content
                             input.form-control(name="username" placeholder="Username" type="text")
                         .col-md-8.mt-3
                             label(for="password") Password
-                            input.form-control(name="password" type="password" placeholder="Password")
+                            input.form-control(name="password" type="password")
                         .col-md-8.mt-3
                             label(for="fname") First Name
                             input.form-control(name="fname" placeholder="First Name" type="text")
@@ -45,9 +45,9 @@ block content
                             button.btn.btn-primary(type="submit") Register
                     a(href="/account") Go back    
             
-            if Login
+            if hideLogin
                 .container-fluid.shadow.p-3.mb-3.rounded.col-xl-8.col-md-4
-                    h1.text-center Customers Login
+                    h1.text-center Login
                     form.row.g-3.my-3.d-flex.flex-column.align-items-center.text-center(method='post' action="/account/login")
                         .col-md-6
                             label(for="username") Username
@@ -60,9 +60,7 @@ block content
                             button.btn.btn-primary(type="submit" href="/") Go Back
                 .container-fluid.shadow.p-3.mb-3.rounded.col-xl-8.col-md-4.text-center 
                     p if you are a new user, Please Register 
-                        a(href="/account/register") here
-                   
-
+                        a(href="/account/register") here 
         if errors 
             each error in errors 
                 p #{error}

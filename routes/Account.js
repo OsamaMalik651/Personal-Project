@@ -5,17 +5,17 @@ const bcrypt = require("bcryptjs");
 
 const accountPage = {
   title: "Accounts Page",
-  Login: false,
+  hideLogin: false,
 };
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  accountPage.Login = true;
+  accountPage.hideLogin = true;
   res.render("accounts", accountPage);
 });
 
 router.get("/register", function (req, res, next) {
-  accountPage.Login = false;
+  accountPage.hideLogin = false;
   console.log(accountPage);
   res.render("accounts", accountPage);
 });

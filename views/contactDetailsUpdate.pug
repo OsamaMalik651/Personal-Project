@@ -1,83 +1,70 @@
 extends layout 
 block content
-        if showAgency
-            h1.text-center #{title}
-            .container-fluid.shadow.d-flex.col-12.border.justify-content-around
-                each agency in Agency 
-                    form#updateDetails.d-flex.flex-column.align-items-center.border.rounded.col-5.m-3(action="/users/userProfile/Agency/"+agency.AgencyId, method="post")
-                        h5 Agency #{agency.AgencyId}
-                        .col-md-10.mt-3
-                            label(for="AgncyAddress") Address
-                            input.form-control(name="AgncyAddress" placeholder= agency.AgncyAddress type="text")
-                        .col-md-10.mt-3
-                            label(for="AgncyCity") City
-                            input.form-control(name="AgncyCity" 
-                            placeholder= agency.AgncyCity
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for="AgncyProv") Province
-                            input.form-control(name="AgncyProv" 
-                            placeholder= agency.AgncyProv
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for="AgncyPostal") Postal Code
-                            input.form-control(name="AgncyPostal" 
-                            placeholder= agency.AgncyPostal
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for="AgncyCountry") Country
-                            input.form-control(name="AgncyCountry" 
-                            placeholder= agency.AgncyCountry
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for="AgncyPhone") Phone
-                            input.form-control(name="AgncyPhone" 
-                            placeholder= agency.AgncyPhone
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for="AgncyFax") Fax
-                            input.form-control(name="AgncyFax" 
-                            placeholder= agency.AgncyFax
-                            type="text")
-                        .col-md-10.m-3.text-center
-                            button.btn.btn-primary(type="submit" form='updateDetails') Update
-        
-        
-        if showAgent 
-            h1.text-center #{title}
-            .container-fluid.shadow.d-flex.col-8.border.justify-content-around
-                    form#updatePersonalDetails.d-flex.flex-column.align-items-center.border.rounded.col-8.m-3(action="/users/userProfile/Agent/"+Agent._id, method="post")
-                        h5 #{Agent.AgtFirstName} #{Agent.AgtLastName}  
-                        .col-md-10.mt-3
-                            label(for="username") Username
-                            input.form-control(name="username" placeholder= Agent.username  type="text")
-                        .col-md-10.mt-3
-                            label(for="email") Email
-                            input.form-control(name="AgtEmail" 
-                            placeholder= Agent.AgtEmail
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for=" fname") First Name
-                            input.form-control(name="AgtFirstName" 
-                            placeholder= Agent.AgtFirstName
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for=" lname") Last Name
-                            input.form-control(name="AgtLastName" 
-                            placeholder= Agent.AgtLastName
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for="phone") Phone
-                            input.form-control(name="AgtBusPhone" 
-                            placeholder= Agent.AgtBusPhone 
-                            type="text")
-                        .col-md-10.mt-3
-                            label(for="phone") Agency Id
-                            input.form-control(name="AgencyId" 
-                            placeholder= Agent.AgencyId 
-                            type="text")
-                        
-                        .col-md-10.m-3.text-center
-                            button.btn.btn-primary(type="submit" form='updatePersonalDetails') Update         
-        .container-fluid.text-center
-            a.btn.btn-info.text-center(type='button' href = "/users/userProfile" style="width:12rem") Back
+    if showAgency
+        h1.text-center #{title}
+        .container-fluid.shadow.d-flex.col-12.border.justify-content-around
+            each agency in Agency 
+                form#updateDetails.d-flex.flex-column.align-items-center.border.rounded.col-5.m-3(action="/users/userProfile/"+agency.AgencyId, method="post")
+                    h5 Agency #{agency.AgencyId}
+                    .col-md-10.mt-3
+                        label(for="AgncyAddress") Address
+                        input.form-control(name="AgncyAddress" placeholder= agency.AgncyAddress type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyCity") City
+                        input.form-control(name="AgncyCity" 
+                        placeholder= agency.AgncyCity
+                        type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyProv") Province
+                        input.form-control(name="AgncyProv" 
+                        placeholder= agency.AgncyProv
+                        type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyPostal") Postal Code
+                        input.form-control(name="AgncyPostal" 
+                        placeholder= agency.AgncyPostal
+                        type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyCountry") Country
+                        input.form-control(name="AgncyCountry" 
+                        placeholder= agency.AgncyCountry
+                        type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyPhone") Phone
+                        input.form-control(name="AgncyPhone" 
+                        placeholder= agency.AgncyPhone
+                        type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyFax") Fax
+                        input.form-control(name="AgncyFax" 
+                        placeholder= agency.AgncyFax
+                        type="text")
+                    .col-md-10.m-3.text-center
+                        button.btn.btn-primary(type="submit" form='updateDetails') Update
+    a.btn.btn-info(type='button' href = "/users/userProfile" style="width:12rem") Back
+    
+    if showAgent 
+        h1 #{title}
+        .container-fluid.shadow.d-flex.col-12.border.justify-content-around
+                form#updatePersonalDetails.d-flex.flex-column.align-items-center.border.rounded.col-5.m-3(action="/users/userProfile/", method="post")
+                    h5 Agent 
+                    .col-md-10.mt-3
+                        label(for="AgncyAddress") Address
+                        input.form-control(name="AgncyAddress" placeholder=  type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyCity") City
+                        input.form-control(name="AgncyCity" 
+                        placeholder= 
+                        type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyProv") Province
+                        input.form-control(name="AgncyProv" 
+                        placeholder= 
+                        type="text")
+                    .col-md-10.mt-3
+                        label(for="AgncyPostal") Postal Code
+                        input.form-control(name="AgncyPostal" 
+                        placeholder= 
+                        type="text")
+                    .col-md-10.m-3.text-center
+                        button.btn.btn-primary(type="submit" form='updateDetails') Update

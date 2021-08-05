@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    .container-fluid.text-center(style = "width: 50%; color: white ") 
+        h2 Create a new Agent Profile
+            form.fs-5(method='POST' action='/contact/create' style = "color: gray")
+                .form-floating.m-3
+                    input#exampleFormControlInput1.form-control(type='number' placeholder='ID' name='agentId')
+                    label.form-label(for='exampleFormControlInput1') Enter agent ID
+                .form-floating.m-3
+                    input#exampleFormControlInput1.form-control(type='text' placeholder='Enter Agent Name' name='agentName')
+                    label.form-label(for='exampleFormControlInput1') Enter Agent's Name
+                .form-floating.m-3
+                    input#exampleFormControlInput1.form-control(type='email' placeholder='Enter Agent Phone Number' name='agentEmail')
+                    label.form-label(for='exampleFormControlInput1') Enter Agent's email
+                .form-floating.m-3
+                    input#exampleFormControlInput1.form-control(type='text' placeholder='Enter Agent Phone Number' name='agentPhone')
+                    label.form-label(for='exampleFormControlInput1') Enter Agent's Phone Number
+                .form-floating.m-3
+                    textarea#floatingTextarea.form-control(type='text' placeholder='Enter Agents Positon' name='agentPosition')
+                    label(for='floatingTextarea') Enter Agent's Postion
+                .form-floating.m-3
+                    input#posturlid.form-control(placeholder='Post slug' name='agencyId')
+                    label(for='posturlid') Enter Agency Id      
+                button.btn.btn-primary.m-3(type='submit') Submit
+                if errors 
+                    ul
+                    each error in errors 
+                        li.alert.alert-danger.m3=error 
+        

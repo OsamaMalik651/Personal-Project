@@ -9,7 +9,7 @@ block content
             each package in Packages
               .card.m-4.d-flex.align-self-stretch(style='width: 25rem;')
                 .d-flex.flex-fill.shadow
-                  img.card-img-top.rounded(src=`${package.imgsrc}` alt=`${package.PkgName}` style='max-height: 20rem; object-fit: fill;')
+                  img.card-img-top.rounded(src=`${package.PkgImgSrc}` alt=`${package.PkgName}` style='max-height: 20rem; object-fit: fill;')
                 .card-body.text-center.d-flex.flex-column.mt-auto
                   h5.card-title.fs-2.text-center.justify-self-end #{package.PkgName}
                   p.card-text.text-center.justify-self-end #{package.PkgDesc}

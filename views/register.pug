@@ -1,0 +1,151 @@
+extends layout 
+
+block content 
+    .container-fluid.col-xl-8
+        .container-fluid.text-white(style='height: fit-content')
+            .row
+                //Registration form
+                .col-lg-5.col-sm-12.shadow-lg.p-3.mb-3.rounded
+                    h1.text-center.m-4 Registration
+                    .container.mt-5.mb-5.fs-5
+                        form#registration(onsubmit='onSubmit()' autocomplete='off')
+                        // Email
+                        .mb-3
+                            label.form-label(for='InputEmail1') Email address
+                            input#InputEmail1.form-control(type='email' aria-describedby='emailHelp' required autocomplete='off'
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)' required='')
+                            #emailHelp.form-text
+                                | We&apos;ll never share your email with anyone else.
+                        // Password
+                        .mb-3
+                            label.form-label(for='InputPassword') Password
+                            input#InputPassword.form-control(type='password' required='' maxlength='20' 
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        // Confrim Password
+                        .mb-3
+                            label.form-label(for='InputPassword1') Confirm Password
+                            input#InputPassword1.form-control(type='password' required='' maxlength='20' minlength='6' 
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        // Name
+                        .mb-3
+                            label.form-label(for='InputName') Name
+                            input#InputName.form-control(type='text' required='' maxlength='20' 
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        // Phone Number
+                        .mb-3
+                            label.form-label(for='InputPhone') Phone
+                            input#InputPhone.form-control(type='tel' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        // Address
+                        .mb-3
+                            label.form-label(for='InputAddress') Address
+                            input#InputAddress.form-control(type='text' 
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        .mb-3
+                            label.form-label(for='PostalCode') Postal Code
+                            input#PostalCode.form-control(type='text' required='' 
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        .d-grid.mt-5.gap-3.col-6.mx-auto
+                            button.btn.btn-outline-primary.btn-lg.btn-block.text-white(type='submit' form='registration')
+                                | Submit
+                            button.btn.btn-outline-primary.btn-lg.btn-block.text-white(type='submit' onclick='onReset()')
+                                | Reset
+                .col-lg-2.col-sm-12.d-flex.justify-content-center.align-items-center.fs2.shadow-lg.p-3.mb-3.rounded
+                    h1.fs-1 Or
+                //Login Form
+                .col-lg-5.col-sm-12.shadow-lg.p-3.mb-3.rounded
+                    h1.text-center.m-4 Login
+                    .contianer-fluid.fs-5.m-4.d-flex.flex-column
+                        form#login.mt-5(onsubmit='onSubmit()')
+                        .mb-3
+                            label.form-label(for='InputEmailLogin') Email address
+                            input#InputEmailLogin.form-control(type='email' required='' aria-describedby='emailHelp' 
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        // Password
+                        .mb-3
+                            label.form-label(for='InputPasswordLogin') Password
+                            input#InputPasswordLogin.form-control(type='password' required='' 
+                            onfocus='focusFunction(this)' onblur='blurFunction(this)')
+                        .d-grid.mt-5.mb-4.gap-3.col-6.mx-auto
+                            button.btn.btn-outline-primary.btn-lg.btn-block.text-white(type='submit' form='login')
+                                | Login
+    //Script for adding and removing the messages whil filling the forms
+    script(src='/javascripts/index1.js')
+    //- script.
+    //-     function onReset() {
+    //-         alert("Are you sure you want to reset");
+    //-     }
+    //-     function onSubmit() {
+    //-         alert("Form Submitted");
+    //-     }
+    //-     // Focus function to add hint to the selected field
+    //-     function focusFunction(x) {
+    //-     //gets the id of the input element and inject message as p element
+    //-         switch (x.id) {
+    //-             case "InputEmail1":
+    //-             var p = "<p> Please enter email Address <p/>";
+    //-             document.getElementById("InputEmail1").insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         case "InputPassword":
+    //-             var p = "<p> Please enter password (6-20 characters) <p/>";
+    //-             document
+    //-             .getElementById("InputPassword")
+    //-             .insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         case "InputPassword1":
+    //-             var p = "<p> Please retype the password <p/>";
+    //-             document
+    //-             .getElementById("InputPassword1")
+    //-             .insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         case "InputName":
+    //-             var p = "<p> Please enter your full name <p/>";
+    //-             document.getElementById("InputName").insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         case "InputPhone":
+    //-             var p = "<p> Please enter your phone number (Format: xxx-xxx-xxxx) <p/>";
+    //-             document.getElementById("InputPhone").insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         case "InputAddress":
+    //-             var p = "<p> Please enter your address <p/>";
+    //-             document.getElementById("InputAddress").insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         case "PostalCode":
+    //-             var p = "<p> Please enter your Postal Code(Format: A2A-2B2) <p/>";
+    //-             document.getElementById("PostalCode").insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-             case "InputEmailLogin":
+    //-             var p = "<p> Please enter email Address. <p/>";
+    //-             document
+    //-             .getElementById("InputEmailLogin")
+    //-             .insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         case "InputPasswordLogin":
+    //-             var p = "<p> Please enter password (6-20 characters) <p/>";
+    //-             document
+    //-             .getElementById("InputPasswordLogin")
+    //-             .insertAdjacentHTML("afterend", p);
+    //-             break;
+    //-         }
+    //-     }
+    //-     //  Blur function removes the injected element afterwards
+    //-     function blurFunction(x) {
+    //-     //Postal Code Verification
+    //-         if (x.id == "PostalCode") {
+    //-             x.nextElementSibling.remove();
+    //-             var regex =
+    //-             /^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i;
+    //-             var match = regex.exec(x.value);
+    //-             if (match) {
+    //-                 x.nextElementSibling.remove();
+    //-             } else {
+    //-                 var p = "<p> Please enter your Postal Code in correct format <p/>";
+    //-                 x.insertAdjacentHTML("afterend", p);
+    //-                 setTimeout(function myfunction() {
+    //-                 x.nextElementSibling.remove();
+    //-                 }, 2000);
+    //-             }
+    //-         } else x.nextElementSibling.remove();
+    //-     }
+    
+        
+
