@@ -1,0 +1,33 @@
+extends layout 
+block content
+    .container-fluid.shadow.rounded.col-sm-12.col-md-12.col-lg-12.col-xl-10.text-center 
+        h2 Welcome #{currentUser.fname}
+        .container-fluid.shadow.rounded.col-sm-12.col-md-12.col-lg-12.col-xl-10.text-center
+            h3.text-center Personal Details
+            h5  #{currentUser.fname} #{currentUser.lname}
+            h5  #{currentUser.address}, #{currentUser.city}, #{currentUser.province}, #{currentUser.postalCode},
+            h5  #{currentUser. phone}
+            a.btn.btn-primary.m-2(href='#' ) Update Details  
+        .container-fluid.shadow-lg.rounded.col-sm-12.col-md-12.col-lg-12.col-xl-10.mt-3
+            h3.text-center Trip History
+            each trip in trips
+                .container.d-flex.m-1
+                    .container.d-flex.align-items-end
+                        p Package: #{trip.title},  
+                        p Travellers: #{trip.travellerCount}, 
+                        p Total Price: #{trip.totalPrice}$ 
+                    -v= new Date().toLocaleString()
+                    -a= trip.PkgStartDate.toLocaleString()
+                    if v < a
+                        p Start Date: #{trip.PkgStartDate}   
+                        .container.d-flex.justify-content-center.align-items-center
+                            a.btn.btn-sm.btn-primary.m-1(href='/users/userProfile/updatePackage' ) Update Package
+                            a.btn.btn-sm.btn-danger.m-1(href='/packages' ) Cancel Purchase
+                       
+                    //- .container.d-flex.justify-content-center
+                    //-     a.btn.btn-primary.m-1(href='/users/userProfile/updatePackage' ) Update Package
+                    //-     a.btn.btn-danger.m-1(href='/packages' ) Cancel Purchase
+
+
+        a.btn.btn-primary.m-2(href='/packages' ) Browse Packages
+        a.btn.btn-secondary.m-2(href="/log-out") Log Out

@@ -1,0 +1,16 @@
+extend layout 
+block content 
+    h1 #{title}
+    h1 #{packageDetail.PkgName}
+    h2 #{packageDetail.PkgDesc} 
+    h3 Base Price: #{packageDetail.PkgBasePrice}
+    h4 Commision : #{packageDetail.PkgAgencyCommission}
+    h4 Select the number of Travellers:
+        form(action="/purchasePage/purchaseConfirm/"+packageDetail.PackageId method="post") 
+            input.form-control(name="travellerCount" type="number" min='1' max='12')
+            button.btn.btn-primary(type="submit" href="#") Confirm Purchase
+            a.btn.btn-primary(href='/packages/details/'+ packageDetail.PackageId role='button') Go Back
+
+
+
+

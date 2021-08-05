@@ -1,0 +1,17 @@
+extends layout 
+block content 
+    if (role === "manager")
+        .container-fluid.shadow.rounded.text-center  
+            h1 #{title} Page
+            h2 welcome #{currentUser.username}  
+            h4 Manager
+            include manager.pug
+            a.btn.btn-secondary.m-2(href="/log-out") Log Out     
+    
+       
+        
+    if (role === "agent")
+        .container-fluid.shadow.rounded.text-center    
+            h1 welcome #{currentUser.username}
+            include agent.pug
+            a.btn.btn-secondary.m-2(href="/log-out") Log Out

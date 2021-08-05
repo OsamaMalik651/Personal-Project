@@ -1,0 +1,19 @@
+extends layout 
+block content 
+    .container-fluid.shadow-lg.p-3.mb-3.rounded.col-xl-8.text-center
+        p #{packageDetail}
+        h1 #{title}
+        .container-fluid.shadow-lg.p-3.mb-3.rounded.col-xl-8(style = "width:50rem;height:20rem")
+            h3.text-center Put image here
+        .container-fluid.shadow-lg.p-3.mb-3.rounded.col-xl-8(style = "width:50rem;height:20rem")
+            h1 #{packageDetail.PkgName}
+            h2 #{packageDetail.PkgDesc} 
+            h3 #{packageDetail.PkgBasePrice} 
+        a.btn.btn-secondary(href='/packages' ) Go Back
+        if currentUser
+            a.btn.btn-primary(href='/purchasePage/'+ packageDetail.PackageId role="button") Purchase
+        if !currentUser
+             a.btn.btn-primary(href='/account' role="button") Login/Register to Purchase
+        //- <a class="btn btn-primary" href="/packages" role="button">Go Back</a>
+        //- <a class="btn btn-secondary" href="/purchasePage" role="button">Purchase</a>
+            

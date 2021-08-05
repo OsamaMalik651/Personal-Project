@@ -1,0 +1,12 @@
+extends layout 
+block content 
+    h1 #{title}
+    h2 Thanks for purchasing the vacation package.
+    h3 Browse our other pacakges 
+        a(href="/packages") here
+    h3 Or 
+    h3 Go to your Profile Page 
+        a(href="/users/userProfile") here
+    if errors 
+        each error in errors
+         p #{error}   

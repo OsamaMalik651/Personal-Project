@@ -1,0 +1,70 @@
+//User schema
+
+//- "role": "customer",
+//-     "username": "o",
+//-     "password": "$2a$10$3nnu4K548wvjxoOCJAzOhO7MkkNYnSPLK/oCNpKZVyZvMKwH7taIi",
+//-     "fname": "Osama",
+//-     "lname": "Malik",
+//-     "address": "Coral Keys drive",
+//-     "city": "Calgary",
+//-     "province": "Alberta",
+//-     "postalCode": "qwrqwr",
+//-     "phone": "4036065660",
+//-     "email": "asdf@gmail.com",
+
+//Agent Schema
+    "_id": 1,
+    "AgentId": 1,
+    "AgtFirstName": "Janet",
+    "AgtMiddleInitial": null,
+    "AgtLastName": "Delton",
+    "AgtBusPhone": "(403) 210-7801",
+    "AgtEmail": "janet.delton@travelexperts.com",
+    "AgtPosition": "Senior Agent",
+    "AgencyId": 1
+
+block contents 
+    .container-fluid.shadow.p-3.mb-3.rounded.col-xl-8.col-md-4
+        h1.text-center Enter Agent Details
+        form(action="/account/register", method="post").d-flex.flex-column.align-items-center
+            .col-md-8.mt-3
+                label(for="role") Role
+                input.form-control(name="role" placeholder="role" type="text")
+            .col-md-8.mt-3
+                label(for="username") Username
+                input.form-control(name="username" placeholder="Username" type="text")
+            .col-md-8.mt-3
+                label(for="password") Password
+                input.form-control(name="password" type="password" placeholder="Password")
+            .col-md-8.mt-3
+                label(for="fname") First Name
+                input.form-control(name="fname" placeholder="First Name" type="text")
+            .col-md-8.mt-3
+                label(for="lname") Last Name
+                input.form-control(name="lname" placeholder="Last Name" type="text")
+            .col-md-8.mt-3
+                label(for="address") Address
+                input.form-control(name="address" placeholder="Adress" type="text")
+            .col-md-8.mt-3
+                label(for="city") City
+                input.form-control(name="city" placeholder="City" type="text")
+            .col-md-8.mt-3                                    
+                label(for="province") Province
+                input.form-control(name="province" placeholder="Province" type="text")
+            .col-md-8.mt-3
+                label(for="postalCode") Postal Code
+                input.form-control(name="postalCode" placeholder="Postal Code" type="text")
+            .col-md-8.mt-3
+                label(for="country") Country
+                input.form-control(name="country" placeholder="Country" type="text")
+            .col-md-8.mt-3
+                label(for="") Country
+                input.form-control(name="country" placeholder="Country" type="text")
+            .col-md-8.mt-3
+                label(for="phone") Phone#
+                input.form-control(name="phone" placeholder="Phone" type="text")
+            .col-md-8.mt-3
+                label(for="email") Email
+                input.form-control(name="email" placeholder="Email Address" type="email")
+            .col.m-3
+                button.btn.btn-primary(type="submit") Register

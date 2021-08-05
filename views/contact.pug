@@ -1,0 +1,93 @@
+extends layout 
+
+block content 
+    .container-fluid.col-xl-8
+        //Main Content of the Contact page
+        .container-fluid.shadow-lg.p-3.mb-3.rounded
+            .px-4.py-2.my-4.text-center
+                h1.display-4.fw-bold Contact us
+                img.d-block.mx-auto.mb-4(src='/images/android-chrome-512x512.png' alt='' width='200rem' height='auto')
+                h1.display-4.fw-bold Travel Experts
+                h2.display-5.fw-bold Dream. Explore. Discover.
+                .col-lg-6.mx-auto
+                p.lead.mb-4.fs-3.text-wrap
+                    | Please get in touch for details and queries.
+                .d-grid.gap-2.d-sm-flex.justify-content-sm-center
+            .row.text-center.contianer.m-5
+                .col-4.col-sm-6.col-lg-4
+                    i.bi.bi-telephone-fill(style='font-size: 3rem')
+                    h5 Call us
+                    h5 403-xxx-xxx
+                .col-4.col-sm-12.col-lg-4
+                    i.bi.bi-envelope(style='font-size: 3rem;')
+                    h5 Reach us at
+                    h5
+                        a(style='color: white; text-decoration: none' href='mailto: info@travelexperts.ca')
+                        | info@travelexperts.ca
+                .col-4.col-sm-12.col-lg-4
+                    i.bi.bi-pin-map(style='font-size: 3rem; color')
+                    h5 Visit us
+                    h5 Calgary, AB, Canada
+        //Show the agent details card from the database
+        .container-fluid.shadow.d-flex.flex-column.p-3.col-sm-12.col-lg-6(style='width: 100%; ')
+            h1.text-center Our Offices
+            if Agency
+                    .container-fluid.d-flex.flex-row.flex-wrap.mr-auto.justify-content-sm-center.justify-content-lg-start(style='width: 75%;')
+                        each agency in Agency
+                            .card.bg-light.m-3(style='width: 18rem;')
+                                .card-body
+                                    h5.card-title Office #{agency.AgencyId}
+                                    h6.card-subtitle.mt-2.mb-1 Address: #{agency.AgncyAddress}, #{agency.AgncyCity}, #{agency.AgncyProv}, #{agency.AgncyPostal}, #{agency.AgncyCountry}
+                                        p.card-text.mt-3(style="margin-bottom:0") Contact: #{agency.AgncyPhone}
+                                        p.card-text(style="margin-bottom:0") Fax: #{agency.AgncyFax}
+                                    //- if role 
+                                    //-     button.btn.btn-primary.mt-auto(href="#" type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop') Update Details
+                                    //-     #staticBackdrop.modal.fade(data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='staticBackdropLabel' aria-hidden='true')
+                                    //-         .modal-dialog
+                                    //-             .modal-content
+                                    //-                 .modal-header
+                                    //-                     h5#staticBackdropLabel.modal-title Modal title
+                                    //-                     button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                                    //-                 .modal-body
+                                    //-                     | ...
+                                    //-                 .modal-footer
+                                    //-                     button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                                    //-                     button.btn.btn-primary(type='button') Understood    
+                                        
+        .container-fluid.shadow.d-flex.flex-column.p-3.col-sm-12.col-lg-6(style='width: 100%; ')
+            if Agents
+                    h1(style="text-align: center;") Our Team
+                    .container-fluid.d-flex.flex-row.flex-wrap.mr-auto.justify-content-sm-center.justify-content-lg-start(style='width: 75%;')
+                        each agent in Agents
+                            .card.bg-light.m-3(style='width: 18rem;')
+                                .card-body 
+                                    h5.card-title #{agent.AgtFirstName} #{agent.AgtLastName}
+                                    h6.card-subtitle.mt-2.mb-1 Email: #{agent.AgtEmail}
+                                        p.card-text.mt-3(style="margin-bottom:0") Contact:#{agent.AgtBusPhone}
+                                        p.card-text(style="margin-bottom:0")  #{agent.AgtPosition}
+                                        p.card-text Agency ID: #{agent.AgencyId}
+                                    //- if role 
+                                    //-     a.btn.btn-primary.mt-auto(href="#") Update Details 
+        .container-fluid.shadow.d-flex.flex-column.p-3.col-sm-12.col-lg-6(style='width: 100%; ')                    
+            .container-fluid.d-flex.flex-column.p-3.col-sm-12.col-lg-6(style='width: 50%;')
+                h1(style="text-align: center;")
+                    | Want us to reach back? 
+                h5(style="text-align: center; color: white") 
+                    |Enter your details and query and we will
+                    |reach out to you
+                form#contact(action='/contact' method='POST')
+                    .mb-3.mt-3
+                    label.form-label.fs-5(for='contactFormName') Name
+                    input#contactFormName.form-control(type='text' placeholder='Enter your Name here' name='Name')
+                    .mb-3.mt-3
+                        label.form-label.fs-5(for='contactFormName') Email
+                        input#contactFormEmail.form-control(type='email' placeholder='name@example.com' name='Email')
+                    .mb-3
+                    label.form-label.fs-5(for='contactFormQuery') Query
+                    textarea#contactFormQuery.form-control(rows='3' name='Query' maxlength='400')
+                    .d-grid.mt-3.mb-3.gap-3.col-6.mx-auto
+                        button.btn.btn-primary.btn-block.text-white(type='submit' form='contact')
+                            | Submit
+        if errors
+            each error in errors 
+                p #{error}

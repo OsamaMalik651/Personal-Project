@@ -1,0 +1,9 @@
+extends layout 
+block content 
+    h1 #{title}
+    h2 to be added 
+    h3 #{cost.title}
+    h3 The total price for #{cost.title} package for #{cost.travellerCount} travellers is #{cost.totalPrice}
+    h3 Are you sure you want to purchase.
+    a.btn.btn-primary(href='/purchasePage/purchaseDone' role='button') Purchase
+    a.btn.btn-primary(href='/purchasePage/'+cost.Id role='button') Go Back
