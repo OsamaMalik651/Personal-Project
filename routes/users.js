@@ -31,8 +31,60 @@ router.get("/userProfile", async function (req, res, next) {
     res.render("agentProfile", { title: "Agent Profile", role: role });
   }
 });
-router.get("/userProfile/updatePackage", function (req, res, next) {
-  res.render("UserPackageUpdate", { title: "Update Package" });
+router.get("/userProfile/updatePackage/:bookingId", function (req, res, next) {
+  Bookings.findOne({ _id: req.params.bookingId }, function (err, booking) {
+    if (err) console.log(err);
+    res.render("UserPackageUpdate", { title: "Update Package", booking });
+  });
+});
+router.post(
+  "/userProfile/updatePackage/:bookingId",
+  async function (req, res, next) {
+    console.log(req.body);
+    Bookings.findOne({ _id: req.params.bookingId }, function (err, booking) {
+      if (err) console.log(err);
+      Packages.findOne(
+        {
+          PackageId: booking.PackageId,
+        },
+        function (err, package) {
+          if (err) console.log(err);
+          booking.totalPrice =
+            package.PkgBasePrice * req.body.travellerCount -
+            package.PkgAgencyCommission;
+          booking.travellerCount = req.body.travellerCount;
+          booking.save((err) => {
+            if (err) {
+              const errorArray = [];
+              const errorKeys = Object.keys(err.errors);
+              errorKeys.forEach((key) =>
+                errorArray.push(err.errors[key].message)
+              );
+              return res.render("userPackageUpdate", {
+                errors: errorArray,
+              });
+            }
+            res.redirect("/users/userProfile");
+          });
+        }
+      );
+    });
+  }
+);
+router.get("/userProfile/delete/:bookingId", function (req, res, next) {
+  Bookings.findOne({ _id: req.params.bookingId }, function (err, booking) {
+    if (err) console.log(err);
+    res.render("bookingDelete", { title: "Delete Booking", booking });
+  });
+});
+router.post("/userProfile/delete/:bookingId", function (req, res, next) {
+  Bookings.findOneAndDelete(
+    { _id: req.params.bookingId },
+    function (err, booking) {
+      if (err) console.log(err);
+      res.redirect("/users/userProfile");
+    }
+  );
 });
 router.post("/userProfile/Agency/:id", async function (req, res, next) {
   var newAgency = new Agency(req.body);

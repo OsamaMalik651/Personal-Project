@@ -1,0 +1,11 @@
+extends layout 
+block content 
+    h1 #{title} Page
+    h5 #{booking}
+        .container-fluid.shadow.p-3.mb-3.rounded.col-xl-8.col-md-4
+                    h1.text-center Are you sure you want to delete your booking
+                    h2.text-center This action can not undone
+                    form(action="/users/userProfile/delete/"+booking._id, method="post").d-flex.flex-column.align-items-center
+                        .col.m-3
+                            button.btn.btn-danger.m-1(type="submit") Delete booking
+                            a.btn.btn-secondary.m-1(href="/users/userProfile") Go back 

@@ -1,32 +1,51 @@
 extends layout 
 block content
       
-  .container-fluid.shadow.rounded.col-sm-12.col-md-12.col-lg-12.col-xl-8
-    .container-fluid.p-3.mb-3
-      .px-4.py-2.my-4.text-center
-        h1 Add carousel here
-        img.d-block.mx-auto.mb-4(src='/android-chrome-512x512.png' alt='' width='15%' height='auto')
-        h1.display-4.fw-bold Travel Experts
-        h2.display-5.fw-bold Dream. Explore. Discover.
-        .col-lg-6.mx-auto
-          p.lead.mb-4.fs-3.fst-italic.text-wrap
-            | We offer great deals for Holidays and tours all around the
-            | world.
-          .d-grid.gap-2.d-sm-flex.justify-content-sm-center
+  #carouselExampleCaptions.my-1.carousel.slide(data-bs-ride='carousel')
+    .carousel-indicators
+      button.active(type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+      button(type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide-to='1' aria-label='Slide 2')
+      button(type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide-to='2' aria-label='Slide 3')
+    .carousel-inner
+      .carousel-item.active
+        img.d-block.w-100(src='https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80' alt='...' style='height: 600px; object-fit: cover;')
+        .carousel-caption.d-md-block.text
+         h1.fw-bold Welcome to 
+          h1.fw-bolder.display-1 Travel Experts
+          h3 Dream | Explore | Discover
+      .carousel-item
+        img.d-block.w-100(src='https://images.unsplash.com/photo-1490430657723-4d607c1503fc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80' alt='...' style='height: 600px; object-fit: cover;')
+        .carousel-caption.d-none.d-md-block
+          h1.fw-bold Welcome to 
+          h1.fw-bolder.display-1 Travel Experts
+          h3 Dream | Explore | Discover
+      .carousel-item
+        img.d-block.w-100(src='https://images.unsplash.com/photo-1483190914030-b4dc3e0f558c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1651&q=80' alt='...' style='height: 600px; object-fit: cover;')
+        .carousel-caption.d-none.d-md-block
+          h1.fw-bold Welcome to 
+          h1.fw-bolder.display-1 Travel Experts
+          h3 Dream | Explore | Discover
+          button.carousel-control-prev(type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide='prev')
+            span.carousel-control-prev-icon(aria-hidden='true')
+            span.visually-hidden Previous
+          button.carousel-control-next(type='button' data-bs-target='#carouselExampleCaptions' data-bs-slide='next')
+            span.carousel-control-next-icon(aria-hidden='true')
+            span.visually-hidden Next
+
   .container-fluid.shadow-lg.p-3.mb-3.rounded.col-sm-12.col-md-12.col-lg-12.col-xl-8
     h1.display-4.fw-bold.px-4.py-1.my-1.text-center
-      | Packages
-    h3.px-4.py-1.my-1.text-center Some of the destinations we offer...    
+      | Travel Packages
+    h3.px-4.py-1.my-1.text-center Some of our favourite destinations!   
     if Packages 
         .container-fluid
-        #mycard.row.justify-content-center.align-items-start.row-cols-1.row-cols-md-2.g-4.m-2.p-2.d-flex
+        #mycard.row.justify-content-center.align-items-start.row-cols-1.row-cols-md-2.g-4.m-2.p-2.d-flex.bg-dark
             each package in Packages
-              .card.m-4.d-flex.align-self-stretch.justify-contents-center.shadow(style='width: 25rem;')
-                .d-flex.flex-fill.shadow.mt-1(style='height: 25rem;')
-                  img.card-img-top.rounded(src=`${package.PkgImgSrc}` alt=`${package.PkgName}` style= 'object-fit: cover;')
+              .card.m-4.pt-3.d-flex.align-self-stretch(style='width: 25rem;')
+                .d-flex.flex-fill.shadow
+                  img.card-img-top.rounded(src=`${package.PkgImgSrc}` alt=`${package.PkgName}` style='height: 400px; object-fit: cover;')
                 .card-body.text-center.d-flex.flex-column.mt-auto
                   h5.card-title.fs-2.text-center.justify-self-end #{package.PkgName}
                   p.card-text.text-center.justify-self-end #{package.PkgDesc}
                   p.card-text.text-center.justify-self-end #{package.PkgBasePrice}
-                  p.card-text.text-center.justify-self-end #{package.PackageId}
-                  a.btn.btn-primary.mt-auto(href="/packages/details/"+ package.PackageId) More Info
+                  p.card-text.text-center.justify-self-end.text-white #{package.PackageId}
+                  a.btn.btn-primary.pb-3.mt-auto(href="/packages/details/"+ package.PackageId) More Info

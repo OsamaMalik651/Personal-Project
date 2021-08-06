@@ -1,5 +1,6 @@
 extend layout 
 block content 
+    p #{Agents}
     h1 #{title}
     h1 #{packageDetail.PkgName}
     h2 #{packageDetail.PkgDesc} 
@@ -7,9 +8,19 @@ block content
     h4 Commision : #{packageDetail.PkgAgencyCommission}
     h4 Select the number of Travellers:
         form(action="/purchasePage/purchaseConfirm/"+packageDetail.PackageId method="post") 
-            input.form-control(name="travellerCount" type="number" min='1' max='12')
-            button.btn.btn-primary(type="submit" href="#") Confirm Purchase
+            //- input.form-control(name="travellerCount" type="number" min='1' max='12')
+            select.form-select(aria-label='Default select example' name="travellerCount")
+                option(selected='') Select the number of travellers
+                    each val in [1,2,3,4,5,6,7,8,9,10,11,12]
+                        option(value= val) #{val}
+            select.form-select(aria-label='Default select example' name="AgentId")
+                option(selected='') Select the referring agent
+                    each Agent in Agents
+                        option(value= Agent.AgentId) #{Agent.AgtFirstName} #{Agent.AgtLastName}
+            button.btn.btn-primary(type="submit" href="#") Confirm Purchase 
             a.btn.btn-primary(href='/packages/details/'+ packageDetail.PackageId role='button') Go Back
+            
+
 
 
 

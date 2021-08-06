@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 var Packages = require("../models/package").Packages;
 var Bookings = require("../models/bookings").Bookings;
+var Agents = require("../models/agents").Agents;
+var AgentCommission = require("../models/agentcommission").AgentCommission;
 var packageCost = {
   title: " ",
   basePrice: 0,
@@ -10,6 +12,7 @@ var packageCost = {
   totalPrice: 0,
   Id: 0,
   startDate: Date(),
+  AgentId: 0,
 };
 
 //middleware that is specific to this router,
@@ -20,15 +23,19 @@ router.use((req, res, next) => {
   if (!req.user) res.status(403).redirect("/");
   else next();
 });
-router.get("/purchaseDone", function (req, res, next) {
+router.get("/purchaseDone", async function (req, res, next) {
+  var agentcommission = new AgentCommission();
+  agentcommission.AgentId = packageCost.AgentId;
+  agentcommission.AgentCommission.push(packageCost.commision * 0.1);
+  await agentcommission.save();
   const booking = new Bookings();
-  console.log(packageCost);
   booking.PackageId = packageCost.Id;
   booking.customerId = res.locals.currentUser._id;
   booking.totalPrice = packageCost.totalPrice;
   booking.travellerCount = packageCost.travellerCount;
   booking.title = packageCost.title;
   booking.PkgStartDate = packageCost.startDate;
+  booking.AgentId = packageCost.AgentId;
   booking.save((err) => {
     if (err) {
       const errorArray = [];
@@ -43,10 +50,11 @@ router.get("/purchaseDone", function (req, res, next) {
 });
 router.post("/purchaseConfirm/:id", function (req, res, next) {
   packageCost.Id = req.params.id;
-  console.log(packageCost);
   packageCost.travellerCount = req.body.travellerCount;
   packageCost.totalPrice =
     packageCost.basePrice * packageCost.travellerCount + packageCost.commision;
+  packageCost.AgentId = req.body.AgentId;
+  console.log(packageCost);
   res.redirect("/purchasePage/purchaseConfirm");
 });
 router.get("/purchaseConfirm", function (req, res, next) {
@@ -57,6 +65,7 @@ router.get("/purchaseConfirm", function (req, res, next) {
 });
 
 router.get("/:id", async function (req, res, next) {
+  const agent = await Agents.find({ role: "agent" }).exec();
   Packages.findOne({ PackageId: req.params.id }, function (err, result) {
     console.log(err, result);
     if (err) {
@@ -71,6 +80,7 @@ router.get("/:id", async function (req, res, next) {
     res.render("purchasePage", {
       title: "Purchase Page",
       packageDetail: result,
+      Agents: agent,
     });
   });
 });

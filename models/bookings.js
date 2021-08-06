@@ -21,6 +21,14 @@ const bookingsSchema = new mongoose.Schema({
   PkgStartDate: {
     type: Date,
   },
+  AgentId: {
+    type: Number,
+    default: 1,
+  },
+  BookingDate: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 bookingsSchema.plugin(uniqueValidator);

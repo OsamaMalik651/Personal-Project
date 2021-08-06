@@ -15,7 +15,6 @@ module.exports.init = function (app) {
 
   // Use a User Model to store and retrieve the user information
   const { User } = require("./models/user");
-  const { Employees } = require("./models/employees");
 
   //For customer Login
   passport.use(
@@ -40,30 +39,7 @@ module.exports.init = function (app) {
       });
     })
   );
-  //For Employee Login
-  // passport.use(
-  //   "employee",
-  //   // Do the login check
-  //   new LocalStrategy(function (username, password, done) {
-  //     Employees.findOne({ username: username }, function (err, user) {
-  //       if (err) {
-  //         return done(err);
-  //       } // Error loading user from DB
-  //       if (!user) {
-  //         return done(null, false);
-  //       } // No user
-  //       bcrypt.compare(password, user.password, (err, res) => {
-  //         if (res) {
-  //           // passwords match! log user in
-  //           return done(null, user);
-  //         } else {
-  //           // passwords do not match!
-  //           return done(null, false, { msg: "Incorrect password" });
-  //         }
-  //       });
-  //     });
-  //   })
-  // );
+
   // Serialize the User ID
   passport.serializeUser(function (user, done) {
     done(null, user.id);
@@ -87,16 +63,7 @@ module.exports.init = function (app) {
       res.redirect("/users/userProfile/");
     }
   );
-  //Employee Login Endpoint, recieves the user login from a login form
-  // app.post(
-  //   "/account/agentLogin",
-  //   passport.authenticate("employee", { failureRedirect: "/" }),
-  //   function (req, res) {
-  //     const headermessage = `Welcome ${req.user?.username}`;
-  //     res.redirect("/users/userProfile/");
-  //   }
-  // );
-  // After login, adds the user object to locals.currentUser which is accesible in the .pug files
+
   app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     next();

@@ -15,14 +15,15 @@ block content
                     .container.d-flex.align-items-end
                         p Package: #{trip.title},  
                         p Travellers: #{trip.travellerCount}, 
-                        p Total Price: #{trip.totalPrice}$ 
+                        p Total Price: #{trip.totalPrice}$
+                        p Start Date: #{trip.PkgStartDate.toLocaleString().slice(0,8)}  
                     -v= new Date().toLocaleString()
                     -a= trip.PkgStartDate.toLocaleString()
                     if v < a
-                        p Start Date: #{trip.PkgStartDate}   
+                        p Start Date: #{trip.PkgStartDate.toLocaleString().slice(0,8)}   
                         .container.d-flex.justify-content-center.align-items-center
-                            a.btn.btn-sm.btn-primary.m-1(href='/users/userProfile/updatePackage' ) Update Package
-                            a.btn.btn-sm.btn-danger.m-1(href='/packages' ) Cancel Purchase
+                            a.btn.btn-sm.btn-primary.m-1(href='/users/userProfile/updatePackage/'+trip._id ) Update Package
+                            a.btn.btn-sm.btn-danger.m-1(href='/users/userProfile/delete/'+trip._id  ) Cancel Purchase
                        
                     //- .container.d-flex.justify-content-center
                     //-     a.btn.btn-primary.m-1(href='/users/userProfile/updatePackage' ) Update Package
